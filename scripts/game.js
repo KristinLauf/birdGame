@@ -7,6 +7,12 @@ window.Game = (function() {
 	 * @param {Element} el jQuery element containing the game.
 	 * @constructor
 	 */
+		
+	var soundsPlaying = new Audio("sounds/themesong.mp3");
+	var soundsGameOver = new Audio("sounds/gameover.mp3");
+	
+
+
 	var Game = function(el) {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
@@ -21,6 +27,9 @@ window.Game = (function() {
 	 * entity to update itself.
 	 */
 	Game.prototype.onFrame = function() {
+		if(this.isPlaying == true){
+			soundsPlaying.play();
+		}
 		// Check if the game loop should stop.
 		if (!this.isPlaying) {
 			return;
@@ -63,6 +72,8 @@ window.Game = (function() {
 	 * Signals that the game is over.
 	 */
 	Game.prototype.gameover = function() {
+		soundsPlaying.pause();
+		soundsGameOver.play();
 		this.isPlaying = false;
 
 		// Should be refactored into a Scoreboard class.
