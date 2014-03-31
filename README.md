@@ -1,4 +1,10 @@
 flappybird
 ==========
 
-Basic flappybird with html5
+Basic flappybird worked with html5 and more..
+
+authors are
+	Sindri
+	Kristín
+	Sigríður
+
