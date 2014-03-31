@@ -3,8 +3,6 @@ body {
 }
 
 
-
-
 /*Time to finalise the cloud shape*/
 .cloud {
 	width: 200px; height: 60px;
@@ -113,16 +111,16 @@ body {
 }
 
 @-webkit-keyframes moveGround {
-	0% {margin-left: 1000px;}
-	100% {margin-left: -1000px;}
+	0% {background-position: 100% 0;}
+	100% {background-position: 0 0;}
 }
 @-moz-keyframes moveGround {
-	0% {margin-left: 1000px;}
-	100% {margin-left: -1000px;}
+	0% {background-position: 100% 0;}
+	100% {background-position: 0 0;}
 }
 @-o-keyframes moveGround {
-	0% {margin-left: 1000px;}
-	100% {margin-left: -1000px;}
+	0% {background-position: 100% 0;}
+	100% {background-position: 0 0;}
 }
 
 .Ground {
@@ -132,18 +130,18 @@ body {
 	width: 102.4em;
 	height: 4em;
 	background: url('../images/fence.png');
-	background-repeat: repeat-x;
-	-webkit-animation: moveGround 20s linear infinite;
-	-moz-animation: moveGround 20s linear infinite;
-	-o-animation: moveGround 20s linear infinite;
+	
+	-webkit-animation: moveGround 10s linear infinite;
+	-moz-animation: moveGround 10s linear infinite;
+	-o-animation: moveGround 10s linear infinite;
 }
 
 .Pipes {
 	position: absolute;
-	bottom: 4em;
+	bottom: 0em;
 	height: 10em;
 	background: url('../images/2pipe.png');
-	background-size: contain
+	background-size: contain;
 }
 
 .Player {
@@ -187,7 +185,7 @@ body {
 }
 
 .Scoreboard-restartText {
-	font-family: 'sans-serif', serif;
+	font-family: 'Comic Sans MS', serif;
 	font-size: 2.4em;
 	color: white;
 }
