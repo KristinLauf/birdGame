@@ -3,12 +3,20 @@ body {
 }
 
 .Ground {
-	position: absolute;
+	position: relative;
+	top: 55em;
 	bottom: 0em;
 	width: 102.4em;
-	height: 3em;
+	height: 4em;
 	background: url('../images/fence.png');
-	background-size: contain
+	background-repeat: repeat-x;
+	-webkit-animation: groundMove linear 15s infinte;
+	
+}
+
+@-webkit-keyframes groundMove {
+	0% {right: 0em;}
+	100% {right: 10em;}
 }
 
 .Pipes {
