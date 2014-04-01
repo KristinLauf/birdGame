@@ -123,6 +123,8 @@ body {
 	100% {background-position: 0 0;}
 }
 
+
+
 .Ground {
 	position: relative;
 	top: 55em;
@@ -137,11 +139,13 @@ body {
 }
 
 .Pipes {
-	position: absolute;
+	position: relative;
 	bottom: 0em;
 	height: 10em;
-	background: url('../images/2pipe.png');
+	background: url('../images/pipe.png');
 	background-size: contain;
+	background-repeat: no-repeat;
+
 }
 
 .Player {
