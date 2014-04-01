@@ -26,6 +26,7 @@ window.Player = (function() {
 		this.pos.x = INITIAL_POSITION_X;
 		this.pos.y = INITIAL_POSITION_Y;
 		gravity = 0;
+		this.angle = 0;
 	};
 
 	Player.prototype.onFrame = function(delta) {
@@ -43,6 +44,7 @@ window.Player = (function() {
 		if (Controls.keys.up || Controls.keys.space) {
 			this.pos.y -= delta * SPEED;
 			gravity = 0;
+			this.angle = 45;
 		}
 
 		this.pos.y += (delta * SPEED/10) * gravity/2;

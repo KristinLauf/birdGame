@@ -17,6 +17,11 @@ window.Game = (function() {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.isPlaying = false;
+		this.gameObjects = [];
+
+		this.gameObjects.push(this.Player);
+		this.gameObjects.push(Pipes(this));
+
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -41,7 +46,11 @@ window.Game = (function() {
 		this.lastFrame = now;
 
 		// Update game entities.
-		this.player.onFrame(delta);
+		for(var i = 0; i < this.gameObjects.length; i++)
+		{
+			this.ganeObjects[i].onFrame(delta);	
+		}
+		
 
 		//this.ground.onFrame(delta);
 
