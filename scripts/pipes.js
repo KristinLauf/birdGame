@@ -1,7 +1,7 @@
 window.Pipes = (function() {
 	'use strict';
 
-	var SPEED = 150; // * 10 pixels per second
+	var SPEED = 200; // * 10 pixels per second
 	var WIDTH = 10;
 	var HEIGHT = 20;
 	var Controls = window.Controls;
@@ -11,7 +11,7 @@ window.Pipes = (function() {
 		this.el = $(document.createElement('div'));
 		this.el.addClass('Pipes');
 		this.game.el.append(this.el[0]);
-		this.pos = { x: 100, y: 0 }
+		this.pos = { x: game.WORLD_WIDTH, y: 0 }
 	}
 
 	Pipes.prototype.reset = function() {
@@ -51,12 +51,14 @@ window.Pipes = (function() {
 		console.log(pipeXmin + "    MINx");
 		console.log(pipeYmax + "    Ypiop");
 
-		if(((birdXmax < pipeXmin) && (birdYmin > pipeYmax)) ||
-			((birdXmin < pipeXmax) && (birdYmin > pipeYmax)) ||
-			((birdXmax > pipeXmin) && (birdYmin > pipeYmax))){
+		/*if(((birdXmax < pipeXmin) && (birdYmin > pipeYmax)) ||
+			((birdXmin < pipeXmax) && (birdYmin > pipeYmax))){
 			return this.game.gameover();
-		} 
-
+		} */
+		if(((birdXmax >= pipeXmin) && (birdYmin >= pipeYmax) && (birdXmin <= pipeXmax)) ||
+			((birdXmin >= pipeXmin) && (birdYmin >= pipeYmax) && (birdYmax <= pipeXmax))){
+			return this.game.gameover();
+		}
 
 	};
 

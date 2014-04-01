@@ -79,6 +79,10 @@ window.Game = (function() {
 	 */
 	Game.prototype.reset = function() {
 		this.player.reset();
+		for(var i = 0; i < this.gameObjects.length; i++)
+		{
+			this.gameObjects[i].reset();	
+		}
 	};
 
 	/**
