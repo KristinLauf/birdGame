@@ -8,8 +8,10 @@ window.Game = (function() {
 	 * @constructor
 	 */
 		
-	var soundsPlaying = new Audio("sounds/themesong.mp3");
+	var soundsPlaying = new Audio("sounds/nyan.mp3");
 	var soundsGameOver = new Audio("sounds/gameover.mp3");
+	var soundsCollision = new Audio("sounds/pipe.mp3");
+
 	
 
 
@@ -84,7 +86,7 @@ window.Game = (function() {
 	 */
 	Game.prototype.gameover = function() {
 		soundsPlaying.pause();
-		soundsGameOver.play();
+		soundsCollision.play();
 		this.isPlaying = false;
 
 		// Should be refactored into a Scoreboard class.

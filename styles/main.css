@@ -123,6 +123,19 @@ body {
 	100% {background-position: 0 0;}
 }
 
+@-webkit-keyframes backStars {
+	0% {background-position: 100% 0;}
+	100% {background-position: 0 0;}
+}
+@-moz-keyframes backStars {
+	0% {background-position: 100% 0;}
+	100% {background-position: 0 0;}
+}
+@-o-keyframes backStars {
+	0% {background-position: 100% 0;}
+	100% {background-position: 0 0;}
+}
+
 
 
 .Ground {
@@ -152,9 +165,9 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 5em;
+	width: 12.5em;
 	height: 5em;
-	background: url('../images/Bird.png');
+	background: url('../images/nyan2.gif');
 	background-size:cover;
 }
 
@@ -212,6 +225,11 @@ body {
 	margin-left: -51.2em;
 	margin-top: -28.8em;
 	overflow: hidden;
-	background: url('../images/backg.png');
+	background: url('../images/bakk.png');
 	background-size:contain;
+
+	-webkit-animation: backStars 30s linear infinite;
+	-moz-animation: backStars 30s linear infinite;
+	-o-animation: backStars 30s linear infinite;
+
 }
