@@ -19,8 +19,8 @@ window.Game = (function() {
 		this.isPlaying = false;
 		this.gameObjects = [];
 
-		this.gameObjects.push(this.Player);
-		this.gameObjects.push(Pipes(this));
+		//this.gameObjects.push(this.player);
+		this.gameObjects.push(new Pipes(this));
 
 
 		// Cache a bound onFrame since we need it each frame.
@@ -45,10 +45,12 @@ window.Game = (function() {
 				delta = now - this.lastFrame;
 		this.lastFrame = now;
 
+		this.player.onFrame(delta);
 		// Update game entities.
 		for(var i = 0; i < this.gameObjects.length; i++)
 		{
-			this.ganeObjects[i].onFrame(delta);	
+			this.gameObjects[i].checkCollisionWithBounds(this.player);
+			this.gameObjects[i].onFrame(delta);	
 		}
 		
 

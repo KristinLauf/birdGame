@@ -17,6 +17,7 @@ window.Player = (function() {
 		this.el = el;
 		this.game = game;
 		this.pos = { x: 0, y: 0 };
+		this.angle = 0;
 	};
 
 	/**
@@ -30,17 +31,7 @@ window.Player = (function() {
 	};
 
 	Player.prototype.onFrame = function(delta) {
-		/*
-		if (Controls.keys.right) {
-			this.pos.x += delta * SPEED;
-		}
-		if (Controls.keys.left) {
-			this.pos.x -= delta * SPEED;
-		}
-		if (Controls.keys.down) {
-			this.pos.y += delta * SPEED;
-		}
-		*/
+
 		if (Controls.keys.up || Controls.keys.space) {
 			this.pos.y -= delta * SPEED;
 			gravity = 0;
@@ -62,7 +53,7 @@ window.Player = (function() {
 		if (this.pos.x < 0 ||
 			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
 			this.pos.y < 0 ||
-			this.pos.y + HEIGHT + 2 > this.game.WORLD_HEIGHT) {
+			this.pos.y + HEIGHT + 2.5 > this.game.WORLD_HEIGHT) {
 			return this.game.gameover();
 		}
 	};
