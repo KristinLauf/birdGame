@@ -140,11 +140,11 @@ body {
 
 .Pipes {
 	position: absolute;
+	bottom: 0;
 	width: 10em;
 	height: 20em;
 	background: url('../images/pipe.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+	background-size: cover;
 
 }
 

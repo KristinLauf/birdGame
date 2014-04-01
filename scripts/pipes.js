@@ -2,10 +2,10 @@ window.Pipes = (function() {
 	'use strict';
 
 	var SPEED = 30; // * 10 pixels per second
-	var WIDTH = 20;
-	var HEIGHT = 15;
-	var POSITION_X = 10;
-	var POSITION_Y = 10;
+	var WIDTH = 10;
+	var HEIGHT = 20;
+	var POSITION_X = 100;
+	var POSITION_Y = 50;
 	var Controls = window.Controls;
 
 	var Pipes = function(game){
@@ -17,8 +17,8 @@ window.Pipes = (function() {
 	}
 
 	Pipes.prototype.reset = function() {
-		this.pos.x = Math.random()*WIDTH;;
-		this.pos.y = Math.random()*WIDTH;;
+		this.pos.x = POSITION_X;
+		this.pos.y = POSITION_Y;
 	};
 
 //if x+wordl width þá initial position
@@ -32,12 +32,29 @@ window.Pipes = (function() {
 	};
 
 	Pipes.prototype.checkCollisionWithBounds = function(player) {
-		console.log(player.pos.y + " y of the player");
-		console.log(this.pos.y + " y of the pipe");
-		if ((player.pos.x + 5 > this.pos.x && player.pos.y < this.pos.y + HEIGHT) ||
-			(player.pos.x < this.pos.x + WIDTH && player.pos.y < this.pos.y)){
+		console.log(this.game.WORLD_HEIGHT);
+		console.log(this.game.WORLD_WIDTH);
+
+		var birdXmax = player.pos.x + 5;
+		var birdXmin = player.pos.x;
+		var birdYmax = player.pos.y + 5;
+		var birdYmin = player.pos.y;
+
+		var pipeYmax = this.game.WORLD_HEIGHT - HEIGHT;
+		var pipeXmax = this.pos.x + WIDTH;
+		var pipeXmin = this.pos.x;
+
+		console.log(birdXmax + " bird x max");
+		console.log(pipeXmin + " pipe x min");
+		console.log(birdYmin + " bird y min");
+		console.log(pipeYmax + " pipe y max");
+
+		if(((birdXmax < pipeXmin) && (birdYmin > pipeYmax)) ||
+			((birdXmin < pipeXmax) && (birdYmin > pipeYmax))){
 			return this.game.gameover();
-		}
+		} 
+
+
 	};
 
 	return Pipes;
