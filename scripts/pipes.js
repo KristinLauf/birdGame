@@ -3,15 +3,34 @@ window.Pipes = (function() {
 
 	var SPEED = 200; // * 10 pixels per second
 	var WIDTH = 10;
-	var HEIGHT = 20;
+	var HEIGHT = 30;
 	var Controls = window.Controls;
+	
 
-	var Pipes = function(game){
+
+	var Pipes = function(game, xpos){
 		this.game = game;
-		this.el = $(document.createElement('div'));
-		this.el.addClass('Pipes');
-		this.game.el.append(this.el[0]);
-		this.pos = { x: game.WORLD_WIDTH, y: 0 }
+		this.xpos = xpos;
+		this.topY = 0;
+		this.botY = 10;
+
+		this.pos = { x: game.WORLD_WIDTH, y: 0 } // eða xpos
+		this.topPipe = $(document.createElement('div'));
+		this.bottomPipe = $(document.createElement('div'));
+		this.topPipe.addClass('topPipes');
+		this.bottomPipe.addClass('bottomPipes');
+		document.getElementById("pipes").appendChild(this.topPipe[0]);
+		document.getElementById("pipes").appendChild(this.bottomPipe[0]);
+		this.reset();
+	
+		//byt til tvær pipur
+		///náum í divið til að setja það inni get elementbyid
+		//bottom pos
+		//top pos
+		//kalla á randomze fallið
+		
+		// this.game.el.append(this.el[0]);
+		
 	}
 
 	Pipes.prototype.reset = function() {
@@ -21,6 +40,7 @@ window.Pipes = (function() {
 	};
 
 //if x+wordl width þá initial position
+
 
 	Pipes.prototype.onFrame = function(delta){
 
@@ -33,7 +53,9 @@ window.Pipes = (function() {
 		}
 
 		this.pos.x -= (delta * SPEED/10);
-		this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		
+		this.bottomPipe.css('transform', 'translate3d(' + this.pos.x + 'em, ' + this.botY + 'em, 0em)');
+		this.topPipe.css('transform', 'translate3d(' + this.pos.x + 'em, ' + this.topY + 'em, 0em)');
 	};
 
 	Pipes.prototype.checkCollisionWithBounds = function(player) {
@@ -51,10 +73,7 @@ window.Pipes = (function() {
 		console.log(pipeXmin + "    MINx");
 		console.log(pipeYmax + "    Ypiop");
 
-		/*if(((birdXmax < pipeXmin) && (birdYmin > pipeYmax)) ||
-			((birdXmin < pipeXmax) && (birdYmin > pipeYmax))){
-			return this.game.gameover();
-		} */
+		
 		if(((birdXmax >= pipeXmin) && (birdYmin >= pipeYmax) && (birdXmin <= pipeXmax)) ||
 			((birdXmin >= pipeXmin) && (birdYmin >= pipeYmax) && (birdYmax <= pipeXmax))){
 			return this.game.gameover();

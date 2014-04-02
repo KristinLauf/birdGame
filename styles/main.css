@@ -151,15 +151,25 @@ body {
 	-o-animation: moveGround 10s linear infinite;
 }
 
-.Pipes {
+.bottomPipes {
 	position: absolute;
-	bottom: 0;
+	bottom: 0em;
+	width: 10em;
+	height: 30em;
+	background: url('../images/pipe.png');
+	background-size: cover;
+}
+
+.topPipes {
+	position: absolute;
+	top:	0em ;
 	width: 10em;
 	height: 20em;
-	background: url('../images/pipe.png');
+	background: url('../images/upperPipe.png');
 	background-size: cover;
 
 }
+
 
 .Player {
 	position: absolute;
