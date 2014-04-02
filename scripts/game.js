@@ -7,13 +7,17 @@ window.Game = (function() {
 	 * @param {Element} el jQuery element containing the game.
 	 * @constructor
 	 */
+
+
 		
 	var soundsPlaying = new Audio("sounds/nyan.mp3");
 	var soundsGameOver = new Audio("sounds/gameover.mp3");
 	var soundsCollision = new Audio("sounds/pipe.mp3");
 
 	
-
+    $('.mute').click(function(){ 
+        soundsPlaying.pause();
+    });
 
 	var Game = function(el) {
 		this.el = el;
@@ -25,7 +29,7 @@ window.Game = (function() {
 		this.gameObjects.push(obs);
 		var obs2 = new window.Pipes(this.el.find('.Pipes2U'), this.el.find('.Pipes4N'), this, 110);
 		this.gameObjects.push(obs2);
-		console.log("here " + this.gameObjects.length);
+		console.log("here " + this.gameObjects.obs);
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 	};
@@ -35,6 +39,7 @@ window.Game = (function() {
 	 * entity to update itself.
 	 */
 	Game.prototype.onFrame = function() {
+
 		if(this.isPlaying == true){
 			soundsPlaying.play();
 		}
@@ -52,7 +57,6 @@ window.Game = (function() {
 		// Update game entities.
 		for(var i = 0; i < this.gameObjects.length; i++)
 		{
-			console.log(this.gameObjects + " yoyo");
 			this.gameObjects[i].onFrame(delta);	
 			this.gameObjects[i].checkCollisionWithBounds(this.player);
 		}

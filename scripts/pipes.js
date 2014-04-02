@@ -1,9 +1,9 @@
 window.Pipes = (function() {
 	'use strict';
 
-	var SPEED = 400; // * 10 pixels per second
+	var SPEED = 500; // * 10 pixels per second
 	var WIDTH = 10;
-	var HEIGHT = 20;
+	var HEIGHT = 25;
 	var Controls = window.Controls;
 	var defX = 0;
 
@@ -56,12 +56,28 @@ window.Pipes = (function() {
 		var pipeXmax = this.posB.x + WIDTH;
 		var pipeXmin = this.posB.x;
 
+		var pipeYmaxT = HEIGHT;
+		var pipeXmaxT = this.posT.x + WIDTH;
+		var pipeXminT = this.posT.x;
+
+		
+		console.log(birdYmax + " birdy");
+		console.log(pipeYmaxT + " pipy");
 
 		
 		if(((birdXmax >= pipeXmin) && (birdYmin >= pipeYmax) && (birdXmin <= pipeXmax)) ||
-			((birdXmin >= pipeXmin) && (birdYmin >= pipeYmax) && (birdYmax <= pipeXmax))){
+			((birdXmin <= pipeXmax) && (birdYmin >= pipeYmax) && (birdXmax >= pipeXmax)) || 
+			((birdXmax >= pipeXminT) && (birdYmin <= pipeYmaxT) && (birdXmin <= pipeXminT)) ||
+			((birdXmin <= pipeYmaxT) && (birdYmax <= pipeYmaxT) && (birdXmax >= pipeXmax))){
 			return this.game.gameover();
 		}
+		/*if(((birdXmax >= pipeXmin) && (birdYmin >= pipeYmax) && (birdXmin <= pipeXmax)) ||
+			((birdXmin >= pipeXmin) && (birdYmin >= pipeYmax) && (birdYmax <= pipeXmax)) || 
+			((birdXmin >= pipeXminT) && (birdYmin <= pipeYmaxT) && (birdXmin <= pipeXminT)) ||
+			((birdXmin <= pipeYmaxT) && (birdYmin <= pipeYmaxT) && (birdXmax >= pipeXmax))){
+			return this.game.gameover();
+		}*/
+
 
 	};
 
