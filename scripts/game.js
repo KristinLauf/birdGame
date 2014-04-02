@@ -21,10 +21,11 @@ window.Game = (function() {
 		this.isPlaying = false;
 		this.gameObjects = [];
 
-		//this.gameObjects.push(this.player);
-		this.gameObjects.push(new Pipes(this));
-
-
+		var obs = new window.Pipes(this.el.find('.Pipes1U'), this.el.find('.Pipes3N'), this, 100);
+		this.gameObjects.push(obs);
+		var obs2 = new window.Pipes(this.el.find('.Pipes2U'), this.el.find('.Pipes4N'), this, 110);
+		this.gameObjects.push(obs2);
+		console.log("here " + this.gameObjects.length);
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 	};
@@ -51,12 +52,10 @@ window.Game = (function() {
 		// Update game entities.
 		for(var i = 0; i < this.gameObjects.length; i++)
 		{
-			this.gameObjects[i].checkCollisionWithBounds(this.player);
+			console.log(this.gameObjects + " yoyo");
 			this.gameObjects[i].onFrame(delta);	
+			this.gameObjects[i].checkCollisionWithBounds(this.player);
 		}
-		
-
-		//this.ground.onFrame(delta);
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);

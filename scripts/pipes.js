@@ -1,61 +1,48 @@
 window.Pipes = (function() {
 	'use strict';
 
-	var SPEED = 200; // * 10 pixels per second
+	var SPEED = 400; // * 10 pixels per second
 	var WIDTH = 10;
-	var HEIGHT = 30;
+	var HEIGHT = 20;
 	var Controls = window.Controls;
-	
+	var defX = 0;
 
-
-	var Pipes = function(game, xpos){
-		this.game = game;
-		this.xpos = xpos;
-		this.topY = 0;
-		this.botY = 10;
-
-		this.pos = { x: game.WORLD_WIDTH, y: 0 } // eða xpos
-		this.topPipe = $(document.createElement('div'));
-		this.bottomPipe = $(document.createElement('div'));
-		this.topPipe.addClass('topPipes');
-		this.bottomPipe.addClass('bottomPipes');
-		document.getElementById("pipes").appendChild(this.topPipe[0]);
-		document.getElementById("pipes").appendChild(this.bottomPipe[0]);
-		this.reset();
-	
-		//byt til tvær pipur
-		///náum í divið til að setja það inni get elementbyid
-		//bottom pos
-		//top pos
-		//kalla á randomze fallið
-		
-		// this.game.el.append(this.el[0]);
-		
+	var Pipes = function(upperEl, lowerEl, game, x){
+		this.upperEl = upperEl;
+		this.lowerEl = lowerEl;
+  		this.game = game;
+ 		this.posT = { x: x, y: 0 };
+ 		this.posB = { x: x, y: 0};
+ 		defX = x;
 	}
 
+
 	Pipes.prototype.reset = function() {
-		this.pos.x = 100;
-		this.pos.y = 0;
-		HEIGHT = Math.floor((Math.random()*20)+1)
+		this.posB.x = defX;
+		this.posB.y = 0;
+		this.posT.x = defX;
+		this.posT.y = 0;
+		//HEIGHT = Math.floor((Math.random()*20)+1);
+		//this.el.height(Math.floor((Math.random()*20)+1));
 	};
-
-//if x+wordl width þá initial position
-
 
 	Pipes.prototype.onFrame = function(delta){
 
 		if (Controls.isPlaying) {
-			this.pos.x -= delta * SPEED;
+			this.posB.x -= delta * SPEED;
+			this.posT.x -=delta * SPEED;
 		}
 
-		if((this.pos.x + WIDTH) < 0){
+		if((this.posB.x + WIDTH) < 0){
 			this.reset();
 		}
 
-		this.pos.x -= (delta * SPEED/10);
+		this.posB.x -= (delta * SPEED/10);
+		this.posT.x -= (delta * SPEED/10);
 		
-		this.bottomPipe.css('transform', 'translate3d(' + this.pos.x + 'em, ' + this.botY + 'em, 0em)');
-		this.topPipe.css('transform', 'translate3d(' + this.pos.x + 'em, ' + this.topY + 'em, 0em)');
+		this.upperEl.css('transform', 'translate3d(' + this.posT.x + 'em, ' + this.posT.y + 'em, 0em)');
+		this.lowerEl.css('transform', 'translate3d(' + this.posB.x + 'em, ' + this.posB.y + 'em, 0em)');
+
 	};
 
 	Pipes.prototype.checkCollisionWithBounds = function(player) {
@@ -66,12 +53,9 @@ window.Pipes = (function() {
 		var birdYmin = player.pos.y + 5;
 
 		var pipeYmax = this.game.WORLD_HEIGHT - HEIGHT;
-		var pipeXmax = this.pos.x + WIDTH;
-		var pipeXmin = this.pos.x;
-		console.log(birdXmax + "    Bxmax");
-		console.log(birdYmin + "    Bymin");
-		console.log(pipeXmin + "    MINx");
-		console.log(pipeYmax + "    Ypiop");
+		var pipeXmax = this.posB.x + WIDTH;
+		var pipeXmin = this.posB.x;
+
 
 		
 		if(((birdXmax >= pipeXmin) && (birdYmin >= pipeYmax) && (birdXmin <= pipeXmax)) ||
