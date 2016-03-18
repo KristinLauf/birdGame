@@ -12,12 +12,9 @@
         <link rel="stylesheet" href="styles/main.css">
     </head>
     <body>
-        <!--[if lt IE 10]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
         <div class="GameCanvas">
-
+            <button class="Mute"></button>
             <div class="Player"></div>
             <div class="Ground"></div>
             <div class="cloud x1"></div>
@@ -33,9 +30,9 @@
                 <button class="Scoreboard-restart">
                     <span class="Scoreboard-restartText">Restart</span>
                 </button>
+                <p class="Scoreboard-restartText">Score is <span class='value'></span></p>
             </div>
         </div>
-
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="scripts/main.js"></script>
         <script src="scripts/controls.js"></script>

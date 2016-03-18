@@ -2,8 +2,7 @@ body {
 	background: black;
 }
 
-
-/*Time to finalise the cloud shape*/
+/*We found this awesome css cloud animation online*/
 .cloud {
 	width: 200px; height: 60px;
 	background: #fff;
@@ -36,7 +35,7 @@ body {
 }
 
 /*Time to animate*/
-.x1 {
+.x1 {	
 	-webkit-animation: moveclouds 15s linear infinite;
 	-moz-animation: moveclouds 15s linear infinite;
 	-o-animation: moveclouds 15s linear infinite;
@@ -136,8 +135,6 @@ body {
 	100% {background-position: 0 0;}
 }
 
-
-
 .Ground {
 	position: relative;
 	top: 55em;
@@ -162,7 +159,7 @@ body {
 
 .topPipes {
 	position: absolute;
-	top:	0em ;
+	top: 0em;
 	width: 10em;
 	height: 20em;
 	background: url('../images/upperPipe.png');
@@ -170,6 +167,13 @@ body {
 
 }
 
+.Mute{
+	position: absolute;
+	width: 12.5em;
+	height: 12.5em;
+	background: url('../images/mute1.png');
+	background-size: cover;
+}
 
 .Player {
 	position: absolute;
@@ -214,7 +218,7 @@ body {
 }
 
 .Scoreboard-restartText {
-	font-family: 'Comic Sans MS', serif;
+	font-family: 'sans-serif', sans-serif;
 	font-size: 2.4em;
 	color: white;
 }

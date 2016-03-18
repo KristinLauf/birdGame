@@ -3,7 +3,7 @@ window.Controls = (function() {
     'use strict';
 
     /**
-     * Key codes we're interested in.
+     * Key codes 
      */
     var KEYS = {
         32: 'space',

@@ -8,28 +8,39 @@ window.Game = (function() {
 	 * @constructor
 	 */
 
+	 var isSound = true;
+	 $(".Mute").click(function(){
+    	
+    	
+    	if(isSound === true){
+    		soundsPlaying.pause();
+    		isSound= false; 
+		}
+		else{
+			isSound = true;
+		}
+	});
 
-		
-	var soundsPlaying = new Audio("sounds/nyan.mp3");
-	var soundsGameOver = new Audio("sounds/gameover.mp3");
-	var soundsCollision = new Audio("sounds/pipe.mp3");
 
-	
-    $('.mute').click(function(){ 
-        soundsPlaying.pause();
-    });
+	if(isSound){
 
+		var soundsPlaying = new Audio("sounds/nyan.mp3");
+		var soundsCollision = new Audio("sounds/pipe.mp3");
+
+	}
 	var Game = function(el) {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.isPlaying = false;
 		this.gameObjects = [];
 
+		// Making two instances of Pipes, including the 4 divs of pipes
 		var obs = new window.Pipes(this.el.find('.Pipes1U'), this.el.find('.Pipes3N'), this, 100);
+		// Pusing it to the array
 		this.gameObjects.push(obs);
 		var obs2 = new window.Pipes(this.el.find('.Pipes2U'), this.el.find('.Pipes4N'), this, 110);
 		this.gameObjects.push(obs2);
-		console.log("here " + this.gameObjects.obs);
+
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 	};
@@ -39,13 +50,14 @@ window.Game = (function() {
 	 * entity to update itself.
 	 */
 	Game.prototype.onFrame = function() {
-
-		if(this.isPlaying == true){
+		// When we are playing the game, we play music
+		if(this.isPlaying == true && isSound == true){
 			soundsPlaying.play();
 		}
 		// Check if the game loop should stop.
 		if (!this.isPlaying) {
 			return;
+
 		}
 
 		// Calculate how long since last frame in seconds.
@@ -89,6 +101,13 @@ window.Game = (function() {
 	};
 
 	/**
+	 * Mutes the music in the game
+	 */
+	Game.prototype.mute = function() {
+		soundsPlaying.pause();
+	}
+
+	/**
 	 * Signals that the game is over.
 	 */
 	Game.prototype.gameover = function() {
@@ -96,8 +115,12 @@ window.Game = (function() {
 		soundsCollision.play();
 		this.isPlaying = false;
 
+		// Reset the score
+		/* To do */
+		
 		// Should be refactored into a Scoreboard class.
 		var that = this;
+
 		var scoreboardEl = this.el.find('.Scoreboard');
 		scoreboardEl
 			.addClass('is-visible')
@@ -106,8 +129,8 @@ window.Game = (function() {
 					scoreboardEl.removeClass('is-visible');
 					that.start();
 				});
-	};
 
+	};
 	/**
 	 * Some shared constants.
 	 */
